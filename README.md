@@ -1,4 +1,4 @@
 status
 ======
 
-Status framework for hackerspace
+Status framework for a hackerspace
