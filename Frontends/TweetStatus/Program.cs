@@ -197,9 +197,6 @@ namespace TweetStatus
 
                 if(success)
                 {
-                    //Add to file
-                    //entiresInEntryFile.Add(wikiEntry);
-
                     //Write success on console
                     Console.WriteLine("Tweet sended: {0}", tweetText);
                 }
