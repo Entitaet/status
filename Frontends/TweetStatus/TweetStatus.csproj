@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6090B240-9338-4545-A4AB-D0573A3E4F84}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TweetStatus</RootNamespace>
+    <AssemblyName>TweetStatus</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entry.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\CSCL\CSCL\CSCL.csproj">
+      <Project>{0E720343-5366-4C3A-BC59-7B7FD2C311B5}</Project>
+      <Name>CSCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\CSCL\CSCL.Database.MySQL\CSCL.Database.MySQL.csproj">
+      <Project>{A197DEFF-3450-4F52-8C74-5AFCB78E0031}</Project>
+      <Name>CSCL.Database.MySQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\CSCL\CSCL.Database\CSCL.Database.csproj">
+      <Project>{9E75C324-52EC-4C26-B307-523082BE43EE}</Project>
+      <Name>CSCL.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="Externals\Tweetinvi\TweetinCore\TweetinCore.csproj">
+      <Project>{2DA9C20D-E072-4152-BEEE-11FEAFF61E0F}</Project>
+      <Name>TweetinCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="Externals\Tweetinvi\Tweetinvi\Tweetinvi.csproj">
+      <Project>{58567CC3-67D4-47BD-94D8-1E1E5CDD71C6}</Project>
+      <Name>Tweetinvi</Name>
+    </ProjectReference>
+    <ProjectReference Include="Externals\Tweetinvi\TwitterToken\TwitterToken.csproj">
+      <Project>{AC583672-F6BA-462E-9944-FF8E31F14102}</Project>
+      <Name>TwitterToken</Name>
+    </ProjectReference>
+    <ProjectReference Include="Externals\Tweetinvi\oAuthConnection\oAuthConnection.csproj">
+      <Project>{30BC9765-D495-449A-8E3E-0AD06D30B7FF}</Project>
+      <Name>oAuthConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
