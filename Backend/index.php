@@ -1,11 +1,7 @@
 <?php
 require 'flight/Flight.php';
 
-//Database
-Flight::set('databaseHost', 'localhost');
-Flight::set('databaseName', 'status');
-Flight::set('databaseUsername', 'root');
-Flight::set('databasePassword', 'root');
+require_once("config.php");
 
 //Register error handler	
 //Flight::map('error', function(Exception $ex){
@@ -103,8 +99,7 @@ Flight::route('GET /@name', function($name)
 	}
 	else
 	{
-		echo "PASS Exception";
-		throw new RestException(204);
+		Flight::halt(204);
 	}
 });
 
@@ -130,8 +125,7 @@ Flight::route('POST /@name/@id', function($name, $id)
 	}	
 	
 	//Update value
-	$dbName=Flight::get('databaseName');
-	$sql="UPDATE {$dbName} SET value='{$id}' WHERE `key`='{$name}'";	
+	$sql="UPDATE status SET value='{$id}' WHERE `key`='{$name}'";	
 
 	if(!$mysqli->query($sql))
 	{	
@@ -172,7 +166,7 @@ Flight::route('PUT /@name/@id', function($name, $id)
 	
 	//Create value
 	$dbName=Flight::get('databaseName');
-	$sql="INSERT INTO {$dbName} (`key`, `value`) VALUES ('{$name}', '{$id}')";	
+	$sql="INSERT INTO status (`key`, `value`) VALUES ('{$name}', '{$id}')";	
 
 	if(!$mysqli->query($sql))
 	{	
