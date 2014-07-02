@@ -2,12 +2,9 @@
   <misc>
     <checkcertificates>true</checkcertificates> 
   </misc>
-  <database>
-	<server>example.com</server> 
-	<port>3306</port> 
-	<database>CHANGEME</database> 
-    <username>CHANGEME</username> 
-    <password>CHANGEME</password> 
+  <api>
+	<token>geheim</token> 
+	<url>http://api.entitaet.org/status/</port> 
   </database>
   <twitter>
       <consumerkey></consumerkey> 
