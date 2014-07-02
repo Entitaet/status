@@ -8,8 +8,8 @@ using TweetinCore.Interfaces.TwitterToken;
 using TwitterToken;
 using TweetinCore.Events;
 using System.Net;
-using CSCL.Database.MySQL;
 using System.Data;
+using CSCL.Network.REST;
 
 namespace TweetStatus
 {
@@ -86,11 +86,8 @@ namespace TweetStatus
                 };
             }
 
-            string databaseServer=config.GetElementAsString("xml.database.server");
-            int databasePort=Convert.ToInt32(config.GetElementAsString("xml.database.port"));
-            string databaseName=config.GetElementAsString("xml.database.database");
-            string databaseUsername=config.GetElementAsString("xml.database.username");
-            string databasePassword=config.GetElementAsString("xml.database.password");
+            string apiToken=config.GetElementAsString("xml.api.token");
+            string apiUrl=config.GetElementAsString("xml.api.url");
 
             string twitterConsumerKey=config.GetElementAsString("xml.twitter.consumerkey");
             string twitterConsumerSecret=config.GetElementAsString("xml.twitter.consumersecret");
@@ -101,43 +98,24 @@ namespace TweetStatus
             //Create twitter token
             IToken token=null;
 
-            if(twitterAccessToken==""||twitterAccessTokenSecret=="")
-            {
-                token=GenerateToken(twitterConsumerKey, twitterConsumerSecret, GetCaptchaFromConsole);
-            }
-            else
-            {
-                token=new Token(twitterAccessToken, twitterAccessTokenSecret, twitterConsumerKey, twitterConsumerSecret);
-            }
+//            if(twitterAccessToken==""||twitterAccessTokenSecret=="")
+//            {
+//                token=GenerateToken(twitterConsumerKey, twitterConsumerSecret, GetCaptchaFromConsole);
+//            }
+//            else
+//            {
+//                token=new Token(twitterAccessToken, twitterAccessTokenSecret, twitterConsumerKey, twitterConsumerSecret);
+//            }
 
             //Check status database
             Console.WriteLine("Check status database");
 
             //Database
-            MySQL db=new MySQL(databaseServer, databasePort, databaseName, databaseUsername, databasePassword);
+            RestClient client=new RestClient(apiUrl);
+            string parameters=String.Format("entities/?token={0}", apiToken);
 
-            bool dbConnected=db.Connect();
-
-            int entityCount=-1;
-
-            if(dbConnected)
-            {
-                string sql="SELECT * FROM status WHERE `key`='entities'";
-                DataTable table=db.ExecuteQuery(sql);
-                entityCount=Convert.ToInt32(table.Rows[0]["value"]);
-                db.Disconnect();
-            }
-            else
-            {
-                Console.WriteLine("Database connection failed.");
-                return;
-            }
-
-            if(entityCount==-1)
-            {
-                Console.WriteLine("No valid entity value.");
-                return;
-            }
+            string value=client.Request(parameters);
+            int entityCount=Convert.ToInt32(value);
 
             //Check status file and tweet if nessesary
             //Load known entries

@@ -5,12 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetStatus", "TweetStatus.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCL", "..\..\..\..\CSCL\CSCL\CSCL.csproj", "{0E720343-5366-4C3A-BC59-7B7FD2C311B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCL.Database", "..\..\..\..\CSCL\CSCL.Database\CSCL.Database.csproj", "{9E75C324-52EC-4C26-B307-523082BE43EE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCL.Database.MySQL", "..\..\..\..\CSCL\CSCL.Database.MySQL\CSCL.Database.MySQL.csproj", "{A197DEFF-3450-4F52-8C74-5AFCB78E0031}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySql.Data", "..\..\..\..\CSCL\External\MySql.Data\MySql.Data.csproj", "{E9DF5ED1-4CBD-4226-B931-9A51610AC14D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "oAuthConnection", "Externals\Tweetinvi\oAuthConnection\oAuthConnection.csproj", "{30BC9765-D495-449A-8E3E-0AD06D30B7FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetinCore", "Externals\Tweetinvi\TweetinCore\TweetinCore.csproj", "{2DA9C20D-E072-4152-BEEE-11FEAFF61E0F}"
@@ -45,22 +39,10 @@ Global
 		{6090B240-9338-4545-A4AB-D0573A3E4F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6090B240-9338-4545-A4AB-D0573A3E4F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6090B240-9338-4545-A4AB-D0573A3E4F84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E75C324-52EC-4C26-B307-523082BE43EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E75C324-52EC-4C26-B307-523082BE43EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E75C324-52EC-4C26-B307-523082BE43EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E75C324-52EC-4C26-B307-523082BE43EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A197DEFF-3450-4F52-8C74-5AFCB78E0031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A197DEFF-3450-4F52-8C74-5AFCB78E0031}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A197DEFF-3450-4F52-8C74-5AFCB78E0031}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A197DEFF-3450-4F52-8C74-5AFCB78E0031}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC583672-F6BA-462E-9944-FF8E31F14102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC583672-F6BA-462E-9944-FF8E31F14102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC583672-F6BA-462E-9944-FF8E31F14102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC583672-F6BA-462E-9944-FF8E31F14102}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9DF5ED1-4CBD-4226-B931-9A51610AC14D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9DF5ED1-4CBD-4226-B931-9A51610AC14D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9DF5ED1-4CBD-4226-B931-9A51610AC14D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9DF5ED1-4CBD-4226-B931-9A51610AC14D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TweetStatus.csproj

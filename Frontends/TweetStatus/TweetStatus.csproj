@@ -9,11 +9,14 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>TweetStatus</RootNamespace>
     <AssemblyName>TweetStatus</AssemblyName>
+    <StartupObject>TweetStatus.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>false</Optimize>
@@ -39,14 +42,6 @@
     <ProjectReference Include="..\..\..\..\CSCL\CSCL\CSCL.csproj">
       <Project>{0E720343-5366-4C3A-BC59-7B7FD2C311B5}</Project>
       <Name>CSCL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\CSCL\CSCL.Database.MySQL\CSCL.Database.MySQL.csproj">
-      <Project>{A197DEFF-3450-4F52-8C74-5AFCB78E0031}</Project>
-      <Name>CSCL.Database.MySQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\CSCL\CSCL.Database\CSCL.Database.csproj">
-      <Project>{9E75C324-52EC-4C26-B307-523082BE43EE}</Project>
-      <Name>CSCL.Database</Name>
     </ProjectReference>
     <ProjectReference Include="Externals\Tweetinvi\TweetinCore\TweetinCore.csproj">
       <Project>{2DA9C20D-E072-4152-BEEE-11FEAFF61E0F}</Project>
