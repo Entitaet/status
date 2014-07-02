@@ -4,8 +4,8 @@
   </misc>
   <api>
 	<token>geheim</token> 
-	<url>http://api.entitaet.org/status/</port> 
-  </database>
+	<url>http://api.entitaet.org/status/</url> 
+  </api>
   <twitter>
       <consumerkey></consumerkey> 
       <consumersecret></consumersecret>
