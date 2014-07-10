@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{60696520-C228-46C3-93B0-5048853B124A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,16 +59,6 @@
     <Compile Include="Helpers\StreamResultGenerator.cs" />
     <Compile Include="Helpers\StreamTrackManager.cs" />
     <Compile Include="UserStream.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TweetinCore\TweetinCore.csproj">
-      <Project>{2DA9C20D-E072-4152-BEEE-11FEAFF61E0F}</Project>
-      <Name>TweetinCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tweetinvi\Tweetinvi.csproj">
-      <Project>{58567CC3-67D4-47BD-94D8-1E1E5CDD71C6}</Project>
-      <Name>Tweetinvi</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
