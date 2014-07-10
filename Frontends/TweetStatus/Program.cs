@@ -135,9 +135,11 @@ namespace TweetStatus
             if(oldStatus!=newStatus)
             {
                 //Tweet
-                string statusGreen="Der Hackerspace ist besetzt und kann besucht werden. #status";
+                DateTime now=DateTime.Now;
+
+                string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1} Uhr) und kann besucht werden. #status", now.Hour, now.Minute);
                 string statusYellow="";
-                string statusRed="Der Hackerspace ist nicht mehr besetzt. #status";
+                string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1} Uhr).  #status", now.Hour, now.Minute);
 
                 string tweetText="";
 
@@ -160,6 +162,7 @@ namespace TweetStatus
 
                 try
                 {
+                    Console.WriteLine("Token: {0}", token.ToString());
                     ITweet tweet=new Tweet(tweetText, token);
                     success=tweet.Publish();
                 }
