@@ -98,14 +98,14 @@ namespace TweetStatus
             //Create twitter token
             IToken token=null;
 
-//            if(twitterAccessToken==""||twitterAccessTokenSecret=="")
-//            {
-//                token=GenerateToken(twitterConsumerKey, twitterConsumerSecret, GetCaptchaFromConsole);
-//            }
-//            else
-//            {
-//                token=new Token(twitterAccessToken, twitterAccessTokenSecret, twitterConsumerKey, twitterConsumerSecret);
-//            }
+            if(twitterAccessToken==""||twitterAccessTokenSecret=="")
+            {
+                token=GenerateToken(twitterConsumerKey, twitterConsumerSecret, GetCaptchaFromConsole);
+            }
+            else
+            {
+                token=new Token(twitterAccessToken, twitterAccessTokenSecret, twitterConsumerKey, twitterConsumerSecret);
+            }
 
             //Check status database
             Console.WriteLine("Check status database");
@@ -134,9 +134,6 @@ namespace TweetStatus
            
             if(oldStatus!=newStatus)
             {
-                //Write new status
-                File.WriteAllText(entryFile, newStatus.ToString());
-
                 //Tweet
                 string statusGreen="Der Hackerspace ist besetzt und kann besucht werden. #status";
                 string statusYellow="";
@@ -170,6 +167,7 @@ namespace TweetStatus
                 {
                     if(ex is NullReferenceException)
                     {
+                        Console.WriteLine("NullReferenceException: {0}", ex.ToString());
                         //wahrscheinlich ein Fehler beim deserialisieren der Antwort
                         //kann ignoriert werden
                     }
@@ -179,8 +177,14 @@ namespace TweetStatus
                 {
                     //Write success on console
                     Console.WriteLine("Tweet sended: {0}", tweetText);
+
+                    //Write new status
+                    File.WriteAllText(entryFile, newStatus.ToString());
                 }
-                else Console.WriteLine("Tweet not sended: {0}", tweetText);
+                else
+                {
+                    Console.WriteLine("Tweet not sended: {0}", tweetText);
+                }
             }
         }
     }
