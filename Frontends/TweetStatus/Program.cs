@@ -117,6 +117,8 @@ namespace TweetStatus
             string value=client.Request(parameters);
             int entityCount=Convert.ToInt32(value);
 
+            Console.WriteLine("Entity count from api: {0}", entityCount);
+
             //Check status file and tweet if nessesary
             //Load known entries
             string entryFile="status.txt";
