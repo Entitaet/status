@@ -95,9 +95,9 @@ namespace TweetStatus
                 //Tweet
                 DateTime now=DateTime.Now;
 
-                string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1:##} Uhr) und kann besucht werden. #status", now.Hour, now.Minute);
+                string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1:00} Uhr) und kann besucht werden. #status", now.Hour, now.Minute);
                 string statusYellow="";
-                string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1:##} Uhr).  #status", now.Hour, now.Minute);
+                string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1:00} Uhr).  #status", now.Hour, now.Minute);
 
                 string tweetText="";
 
