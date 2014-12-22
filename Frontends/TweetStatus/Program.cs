@@ -2,63 +2,15 @@ using System;
 using System.Collections.Generic;
 using CSCL;
 using System.IO;
-using TweetinCore.Interfaces;
-using Tweetinvi;
-using TweetinCore.Interfaces.TwitterToken;
-using TwitterToken;
-using TweetinCore.Events;
 using System.Net;
 using System.Data;
 using CSCL.Network.REST;
+using TinyTwitter;
 
 namespace TweetStatus
 {
     class Program
     {
-   		static IToken GenerateToken(string consumerKey, string consumerSecret, RetrieveCaptchaDelegate getCaptchaDelegate)
-		{
-			Console.WriteLine("Starting Token Generation...");
-			ITokenCreator creator = new TokenCreator(consumerKey, consumerSecret);
-
-			Console.WriteLine("Please enter the verifier key...");
-			IToken newToken = creator.CreateToken(getCaptchaDelegate);
-
-			if (newToken != null)
-			{
-				Console.WriteLine("Token generated!");
-				Console.WriteLine("Token Information : ");
-
-				Console.WriteLine("Consumer Key : {0}", newToken.ConsumerKey);
-				Console.WriteLine("Consumer Secret : {0}", newToken.ConsumerSecret);
-				Console.WriteLine("Access Token : {0}", newToken.AccessToken);
-				Console.WriteLine("Access Token Secret : {0}", newToken.AccessTokenSecret);
-
-				ITokenUser loggedUser = new TokenUser(newToken);
-				Console.WriteLine("Your name is {0}!", loggedUser.ScreenName);
-
-				return newToken;
-			}
-
-			Console.WriteLine("Token could not be generated. Please login and specify your verifier key!");
-			return null;
-		}
-
-		static int GetCaptchaFromConsole(string validationUrl)
-		{
-			Console.WriteLine("Please visit :");
-			Console.WriteLine("{0}", validationUrl);
-			Console.WriteLine("\nEnter validation key : ");
-			string validationKey = Console.ReadLine();
-
-			int result;
-			if (Int32.TryParse(validationKey, out result))
-			{
-				return result;
-			}
-
-			return -1;
-		}
-
         public static void Main(string[] args)
         {
             //Load config
@@ -96,15 +48,21 @@ namespace TweetStatus
             string twitterAccessTokenSecret=config.GetElementAsString("xml.twitter.accesstokensecret");
 
             //Create twitter token
-            IToken token=null;
+            OAuthInfo token=null;
 
             if(twitterAccessToken==""||twitterAccessTokenSecret=="")
             {
-                token=GenerateToken(twitterConsumerKey, twitterConsumerSecret, GetCaptchaFromConsole);
+                Console.WriteLine("Set access token in config file");
+                return;
             }
             else
             {
-                token=new Token(twitterAccessToken, twitterAccessTokenSecret, twitterConsumerKey, twitterConsumerSecret);
+                token=new OAuthInfo {
+                    AccessToken=twitterAccessToken,
+                    AccessSecret=twitterAccessTokenSecret,
+                    ConsumerKey=twitterConsumerKey,
+                    ConsumerSecret=twitterConsumerSecret
+                };
             }
 
             //Check status database
@@ -137,9 +95,9 @@ namespace TweetStatus
                 //Tweet
                 DateTime now=DateTime.Now;
 
-                string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1} Uhr) und kann besucht werden. #status", now.Hour, now.Minute);
+                string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1:##} Uhr) und kann besucht werden. #status", now.Hour, now.Minute);
                 string statusYellow="";
-                string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1} Uhr).  #status", now.Hour, now.Minute);
+                string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1:##} Uhr).  #status", now.Hour, now.Minute);
 
                 string tweetText="";
 
@@ -158,22 +116,18 @@ namespace TweetStatus
                     tweetText=statusGreen;
                 }
 
-                bool success=false;
+                bool success=true;
 
                 try
                 {
                     Console.WriteLine("Token: {0}", token.ToString());
-                    ITweet tweet=new Tweet(tweetText, token);
-                    success=tweet.Publish();
+
+                    var twitter=new TinyTwitter.TinyTwitter(token);
+                    twitter.UpdateStatus(tweetText);
                 }
                 catch(Exception ex)
                 {
-                    if(ex is NullReferenceException)
-                    {
-                        Console.WriteLine("NullReferenceException: {0}", ex.ToString());
-                        //wahrscheinlich ein Fehler beim deserialisieren der Antwort
-                        //kann ignoriert werden
-                    }
+                    success=false;
                 }
 
                 if(success)
