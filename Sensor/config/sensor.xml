@@ -1,0 +1,37 @@
+<xml>
+  <misc>
+    <checkcertificates>true</checkcertificates>
+    <verbose>true</verbose>
+    <lastrun>535598474264633883</lastrun>
+  </misc>
+  <api>
+    <token>geheim</token>
+    <url>http://api.example.org/status/</url>
+  </api>
+  <network>
+    <segment key="network-devices">
+      <active>false</active>
+      <iprange>10.0.0.0/24</iprange>
+    </segment>
+    <segment key="server">
+      <active>true</active>
+      <iprange>10.0.1.0/24</iprange>
+    </segment>
+    <segment key="clients">
+      <active>true</active>
+      <iprange>10.0.10.0/24</iprange>
+      <iprange>10.0.11.0/24</iprange>
+      <iprange>10.0.12.0/24</iprange>
+    </segment>
+  </network>
+  <detection>
+    <entity>
+      <active>true</active>
+      <sensortype>network</sensortype>
+      <networksegment>server</networksegment>
+      <minimumcount>0</minimumcount>
+      <minimumtime>420</minimumtime>
+      <significanttime>0</significanttime>
+    </entity>
+  </detection>
+</xml>
