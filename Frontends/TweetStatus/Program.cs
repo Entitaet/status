@@ -6,6 +6,8 @@ using System.Net;
 using System.Data;
 using CSCL.Network.REST;
 using TinyTwitter;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using CSCL.Crypto.Checksum;
 
 namespace TweetStatus
 {
@@ -94,10 +96,11 @@ namespace TweetStatus
             {
                 //Tweet
                 DateTime now=DateTime.Now;
+				string datetimeHash="#"+CRC16.ComputeChecksum(BitConverter.GetBytes(now.Ticks)).ToString("x4");
 
-                string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1:00} Uhr) und kann besucht werden. #status", now.Hour, now.Minute);
+				string statusGreen=String.Format("Der Hackerspace ist besetzt ({0}:{1:00} Uhr) und kann besucht werden. #status {2}", now.Hour, now.Minute, datetimeHash);
                 string statusYellow="";
-                string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1:00} Uhr).  #status", now.Hour, now.Minute);
+				string statusRed=String.Format("Der Hackerspace ist nicht mehr besetzt ({0}:{1:00} Uhr). #status {2}", now.Hour, now.Minute, datetimeHash);
 
                 string tweetText="";
 
@@ -127,6 +130,7 @@ namespace TweetStatus
                 }
                 catch(Exception ex)
                 {
+					Console.WriteLine(ex.ToString());
                     success=false;
                 }
 
