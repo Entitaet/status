@@ -29,7 +29,7 @@
         <!-- Add your site or application content here -->
         <h2>Entität e.V.</h2>
 		
-		<div id="status-entitaet"></id>
+		<div id="status-entitaet"></div>
 
 		</div>
 		
